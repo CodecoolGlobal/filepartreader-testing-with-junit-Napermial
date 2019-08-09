@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 class FilePartReaderTest {
     File file;
     String filePath = "D:\\projektek\\filepartreader-testing-with-junit-Napermial\\test\\testFile.txt";
-    String testString = "lorem ipsum stabat acies ferro mortique parates \niam lituus\tpugnae";
+    String testString = "lorem ipsum stabat acies ferro mortique parates \niam lituus\tpugnae\ntis\nalso\nhere";
 
     @BeforeEach
     void setUp() {
@@ -60,5 +60,12 @@ class FilePartReaderTest {
     void testFromLineSmallerThanZero(){
         FilePartReader filePartReader = new FilePartReader();
         Assertions.assertThrows(IllegalArgumentException.class, () -> filePartReader.setup(filePath, -1, 0) );
+    }
+
+    @Test
+    void testReadLinesOptimalImput() throws IOException {
+        FilePartReader filePartReader = new FilePartReader();
+        filePartReader.setFilePath(filePath);
+        Assertions.assertEquals("lorem ipsum stabat acies ferro mortique parates iam lituus\tpugnae", filePartReader.readLines(1, 2));
     }
 }

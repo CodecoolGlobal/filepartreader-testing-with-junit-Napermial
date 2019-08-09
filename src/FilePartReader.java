@@ -27,9 +27,18 @@ public class FilePartReader {
         return joined.trim();
     }
 
-//    public String readLines (){
-//        read();
-//    }
+    public String readLines (Integer fromLine, Integer toLine) throws IOException{
+        String raw = read();
+        String[] splitted = raw.split("\n");
+        if (fromLine == 0 && toLine == 0){
+            return splitted[0];
+        }
+        StringBuilder rejoined = new StringBuilder();
+        for(int i = fromLine-1; i < toLine;i++) {
+            rejoined.append(splitted[i]);
+        }
+        return String.valueOf(rejoined);
+    }
 
 
     public void setFilePath(String filePath) {
