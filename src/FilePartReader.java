@@ -16,9 +16,9 @@ public class FilePartReader {
 
     public String read () throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
-        String joined = reader.lines().collect(Collectors.joining());
+        String joined = reader.lines().map(x -> x+"\n").collect(Collectors.joining());
         reader.close();
-        return joined;
+        return joined.trim();
     }
 
 //    public String readLines (){

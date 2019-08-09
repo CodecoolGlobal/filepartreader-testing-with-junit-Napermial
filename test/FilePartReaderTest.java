@@ -40,7 +40,7 @@ class FilePartReaderTest {
     @Test
     void testReadReadsFile() throws IOException {
         FilePartReader filePartReader = new FilePartReader();
-        filePartReader.setFilePath(file.getPath());
+        filePartReader.setFilePath(filePath);
         Assertions.assertEquals(testString, filePartReader.read());
 
     }
