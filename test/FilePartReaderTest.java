@@ -68,4 +68,11 @@ class FilePartReaderTest {
         filePartReader.setFilePath(filePath);
         Assertions.assertEquals("lorem ipsum stabat acies ferro mortique parates iam lituus\tpugnae", filePartReader.readLines(1, 2));
     }
+
+    @Test
+    void testReadLinesToAndFromAlsoOneInput() throws IOException {
+        FilePartReader filePartReader = new FilePartReader();
+        filePartReader.setFilePath(filePath);
+        Assertions.assertEquals("lorem ipsum stabat acies ferro mortique parates ", filePartReader.readLines(1,1));
+    }
 }
