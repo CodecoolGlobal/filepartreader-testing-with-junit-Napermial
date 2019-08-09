@@ -42,6 +42,11 @@ class FilePartReaderTest {
         FilePartReader filePartReader = new FilePartReader();
         filePartReader.setFilePath(filePath);
         Assertions.assertEquals(testString, filePartReader.read());
+    }
 
+    @Test
+    void testReadThrowsException(){
+        FilePartReader filePartReader = new FilePartReader();
+        Assertions.assertThrows(IOException.class, filePartReader::read);
     }
 }

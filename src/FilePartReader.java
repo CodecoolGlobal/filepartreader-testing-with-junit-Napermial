@@ -8,10 +8,16 @@ public class FilePartReader {
     private Integer fromLine;
     private Integer toLine;
 
-    public void setup (){
+    public FilePartReader() {
         filePath = "there";
         fromLine = 3;
         toLine = 1;
+    }
+
+    public void setup (String filePath, Integer fromLine, Integer toLine){
+        this.filePath = filePath;
+        this.fromLine = fromLine;
+        this.toLine = toLine;
     }
 
     public String read () throws IOException {
