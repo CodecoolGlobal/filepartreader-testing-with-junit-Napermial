@@ -14,15 +14,15 @@ public class FilePartReader {
         toLine = 1;
     }
 
-    public void setup (String filePath, Integer fromLine, Integer toLine){
+    public void setup(String filePath, Integer fromLine, Integer toLine) throws IllegalArgumentException {
         this.filePath = filePath;
         this.fromLine = fromLine;
         this.toLine = toLine;
-    }
+        if (fromLine > toLine || fromLine < 0) throw new IllegalArgumentException(); }
 
-    public String read () throws IOException {
+    public String read() throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
-        String joined = reader.lines().map(x -> x+"\n").collect(Collectors.joining());
+        String joined = reader.lines().map(x -> x + "\n").collect(Collectors.joining());
         reader.close();
         return joined.trim();
     }

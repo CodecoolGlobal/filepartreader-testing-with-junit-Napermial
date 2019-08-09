@@ -49,4 +49,16 @@ class FilePartReaderTest {
         FilePartReader filePartReader = new FilePartReader();
         Assertions.assertThrows(IOException.class, filePartReader::read);
     }
+
+    @Test
+    void testSetupThrowsIllegalArgumentGivenFromBiggerThanTo(){
+        FilePartReader filePartReader = new FilePartReader();
+        Assertions.assertThrows(IllegalArgumentException.class, () -> filePartReader.setup(filePath, 1, 0) );
+    }
+
+    @Test
+    void testFromLineSmallerThanZero(){
+        FilePartReader filePartReader = new FilePartReader();
+        Assertions.assertThrows(IllegalArgumentException.class, () -> filePartReader.setup(filePath, -1, 0) );
+    }
 }
