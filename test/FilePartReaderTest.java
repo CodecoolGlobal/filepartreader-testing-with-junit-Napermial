@@ -6,21 +6,35 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 class FilePartReaderTest {
     File file;
+    String filePath = "D:\\projektek\\filepartreader-testing-with-junit-Napermial\\test\\testFile.txt";
     String testString = "lorem ipsum stabat acies ferro mortique parates \niam lituus\tpugnae";
 
     @BeforeEach
-    void setUp() throws IOException {
-        file = new File("D:\\projektek\\filepartreader-testing-with-junit-Napermial\\test\\testFile");
-        BufferedWriter writer = new BufferedWriter(new FileWriter(file.getPath()));
-        writer.write(testString);
+    void setUp() {
+        file = new File(filePath);
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
+            writer.write(testString);
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @AfterEach
     void tearDown() {
-        file.delete();
+        try {
+            Files.deleteIfExists(Paths.get(filePath));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Test
