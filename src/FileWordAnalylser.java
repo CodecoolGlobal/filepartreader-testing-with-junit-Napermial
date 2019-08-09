@@ -16,12 +16,15 @@ public class FileWordAnalylser {
         java.util.Collections.sort(lines);
         return lines;
     }
-//
-//    public List getWordsContainingSubstring(String subString) {
-//        FilePartReader partReader = new FilePartReader();
-//        FilePartReader.readLines();
-//        return;
-//    }
+
+    public List getWordsContainingSubstring(String subString) throws IOException {
+    String[] splitted = filePartReader.read().split("\n");
+    List<String> containsSubsString = new ArrayList<>();
+    for(String line : splitted){
+        if(line.contains(subString)) containsSubsString.add(line);
+    }
+    return containsSubsString;
+    }
 //
 //    public List getStringsWhichPalindromes() {
 //        FilePartReader.readLines();

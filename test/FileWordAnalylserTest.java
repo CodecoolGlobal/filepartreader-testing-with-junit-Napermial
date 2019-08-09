@@ -52,4 +52,15 @@ class FileWordAnalylserTest {
         );
         Assertions.assertEquals(lines, fileWordAnalylser.getWordsOrderedAlphabetically());
     }
+
+    @Test
+    void testContaingSubstringOptimal() throws IOException {
+        FilePartReader filePartReader = new FilePartReader();
+        filePartReader.setFilePath(filePath);
+        FileWordAnalylser fileWordAnalylser = new FileWordAnalylser(filePartReader);
+        ArrayList lines = new ArrayList<>(
+                Arrays.asList("lorem ipsum stabat acies ferro mortique parates ", "iam lituus	pugnae", "also")
+        );
+        assertEquals(lines, fileWordAnalylser.getWordsContainingSubstring("a"));
+    }
 }
