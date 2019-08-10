@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class FileWordAnalylserTest {
     File file;
     String filePath = "D:\\projektek\\filepartreader-testing-with-junit-Napermial\\test\\testFile.txt";
-    String testString = "lorem ipsum stabat acies ferro mortique parates \niam lituus\tpugnae\ntis\nalso\nhere";
+    String testString = "lorem ipsum stabat acies ferro mortique parates \niam lituus\tpugnae\ntis\nalso\nhere\nebe\nlel\nqnnq\nqsdffdsq";
 
     @BeforeEach
     void setUp() {
@@ -48,7 +48,7 @@ class FileWordAnalylserTest {
         filePartReader.setup(filePath, 1, 1);
         FileWordAnalylser fileWordAnalylser = new FileWordAnalylser(filePartReader);
         ArrayList lines = new ArrayList<>(
-            Arrays.asList("also", "here", "iam lituus\tpugnae", "lorem ipsum stabat acies ferro mortique parates ", "tis")
+            Arrays.asList("also", "ebe", "here", "iam lituus\tpugnae","lel", "lorem ipsum stabat acies ferro mortique parates ","qnnq", "qsdffdsq", "tis")
         );
         Assertions.assertEquals(lines, fileWordAnalylser.getWordsOrderedAlphabetically());
     }
@@ -58,9 +58,20 @@ class FileWordAnalylserTest {
         FilePartReader filePartReader = new FilePartReader();
         filePartReader.setFilePath(filePath);
         FileWordAnalylser fileWordAnalylser = new FileWordAnalylser(filePartReader);
-        ArrayList lines = new ArrayList<>(
+        ArrayList<String> lines = new ArrayList<>(
                 Arrays.asList("lorem ipsum stabat acies ferro mortique parates ", "iam lituus	pugnae", "also")
         );
         assertEquals(lines, fileWordAnalylser.getWordsContainingSubstring("a"));
+    }
+
+    @Test
+    void testPalindromeSearchOddAndEvenLength() throws IOException {
+        FilePartReader filePartReader = new FilePartReader();
+        filePartReader.setFilePath(filePath);
+        FileWordAnalylser fileWordAnalylser = new FileWordAnalylser(filePartReader);
+        List<String> palindromes = new ArrayList<>(
+                Arrays.asList("ebe","lel","qnnq","qsdffdsq")
+        );
+        assertEquals(palindromes, fileWordAnalylser.getStringsWhichPalindromes());
     }
 }

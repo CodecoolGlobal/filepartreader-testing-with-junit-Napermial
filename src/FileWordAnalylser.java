@@ -25,9 +25,25 @@ public class FileWordAnalylser {
     }
     return containsSubsString;
     }
-//
-//    public List getStringsWhichPalindromes() {
-//        FilePartReader.readLines();
-//        return;
-//    }
+
+    public List getStringsWhichPalindromes() throws IOException {
+        String[] splitted = filePartReader.read().split("\n");
+        List<String> palindoromes = new ArrayList<>();
+        for(String line : splitted){
+            int splitPlace = line.length()/2;
+            String secondPart = line.substring(splitPlace);
+            String firstPart;
+            if(line.length() % 2 == 1){
+                firstPart = line.substring(0, splitPlace+1);
+            }else{
+                firstPart = line.substring(0, splitPlace);
+            }
+            StringBuilder reverser = new StringBuilder();
+            secondPart = reverser.append(secondPart).reverse().toString();
+            if(firstPart.equals(secondPart)){
+                palindoromes.add(line);
+            }
+        }
+        return palindoromes;
+    }
 }
